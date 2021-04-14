@@ -71,4 +71,5 @@ public:
     bool update() override;
 
     friend class Tower;
+    bool has_terminal() const;
 };
