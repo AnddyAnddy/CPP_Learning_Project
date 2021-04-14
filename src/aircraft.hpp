@@ -72,4 +72,5 @@ public:
 
     friend class Tower;
     bool has_terminal() const;
+    bool is_circling() const;
 };
