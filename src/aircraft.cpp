@@ -102,6 +102,11 @@ bool Aircraft::update()
 
     if (!is_at_terminal)
     {
+        auto new_waypoints = control.reserve_terminal(*this);
+        if (!new_waypoints.empty())
+        {
+            waypoints = std::move(new_waypoints);
+        }
         turn_to_waypoint();
         // move in the direction of the current speed
         pos += speed;
