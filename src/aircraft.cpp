@@ -170,6 +170,11 @@ bool Aircraft::is_circling() const
     return !has_terminal() && !is_at_terminal && !is_service_done;
 }
 
+bool Aircraft::is_low_on_fuel() const
+{
+    return fuel < LOW_ON_FUEL;
+}
+
 void Aircraft::display() const
 {
     type.texture.draw(project_2D(pos), { PLANE_TEXTURE_DIM, PLANE_TEXTURE_DIM }, get_speed_octant());
