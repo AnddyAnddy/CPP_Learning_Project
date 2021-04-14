@@ -175,6 +175,20 @@ bool Aircraft::is_low_on_fuel() const
     return fuel < LOW_ON_FUEL;
 }
 
+void Aircraft::refill(unsigned int& fuel_stock)
+{
+    auto before_add     = fuel;
+    unsigned int to_add = MAX_FUEL - fuel;
+    if (fuel_stock <= to_add)
+    {
+        to_add = fuel_stock;
+    }
+    fuel += to_add;
+    fuel_stock -= to_add;
+    std::cout << flight_number << " refueled " << before_add << " -> " << fuel
+              << " | fuel stock remaining: " << fuel_stock << std::endl;
+}
+
 void Aircraft::display() const
 {
     type.texture.draw(project_2D(pos), { PLANE_TEXTURE_DIM, PLANE_TEXTURE_DIM }, get_speed_octant());

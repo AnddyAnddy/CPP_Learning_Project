@@ -29,7 +29,5 @@ constexpr float DEFAULT_ZOOM = 2.0f;
 constexpr size_t DEFAULT_WINDOW_WIDTH  = 800;
 constexpr size_t DEFAULT_WINDOW_HEIGHT = 600;
 
-constexpr unsigned int MAX_FUEL = 3000;
-constexpr unsigned int MIN_FUEL = 150;
 
 using AircraftCrash = std::runtime_error;
