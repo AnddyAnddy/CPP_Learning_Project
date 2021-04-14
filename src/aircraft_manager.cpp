@@ -31,6 +31,19 @@ void AircraftManager::stats(const std::string& flight_number)
     std::cout << "Number of flights of " << flight_number << ": " << nb_flight << std::endl;
 }
 
+unsigned int AircraftManager::get_required_fuel() const
+{
+    return std::accumulate(aircrafts.begin(), aircrafts.end(), 0U,
+                           [](unsigned int sum, const std::unique_ptr<Aircraft>& aircraft)
+                           {
+                               if (aircraft->is_low_on_fuel() && aircraft->at_terminal())
+                               {
+                                   return sum + FULL_KEROSENE - aircraft->get_fuel();
+                               }
+                               return sum;
+                           });
+}
+
 void AircraftManager::display_aircrafts()
 {
     auto has_terminal = [](const std::unique_ptr<Aircraft>& a)

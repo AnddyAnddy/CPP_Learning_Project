@@ -67,6 +67,7 @@ public:
 
     const std::string& get_flight_num() const { return flight_number; }
     unsigned int get_fuel() const { return fuel; }
+    bool at_terminal() const { return is_at_terminal; }
     float distance_to(const Point3D& p) const { return pos.distance_to(p); }
 
     void display() const override;
