@@ -76,6 +76,16 @@ void TowerSimulation::create_keystrokes()
     // Also, it would make no sense to use the framerate to simulate the pause, cause how would we unpause if
     // the program is not running anymore ?
     GL::keystrokes.emplace('p', []() { GL::is_paused = !GL::is_paused; });
+
+    // TASK-2 Obj-1 B-2: Stats for aircrafts
+    GL::keystrokes.emplace('0', [this]() { manager.stats(airlines[0]); });
+    GL::keystrokes.emplace('1', [this]() { manager.stats(airlines[1]); });
+    GL::keystrokes.emplace('2', [this]() { manager.stats(airlines[2]); });
+    GL::keystrokes.emplace('3', [this]() { manager.stats(airlines[3]); });
+    GL::keystrokes.emplace('4', [this]() { manager.stats(airlines[4]); });
+    GL::keystrokes.emplace('5', [this]() { manager.stats(airlines[5]); });
+    GL::keystrokes.emplace('6', [this]() { manager.stats(airlines[6]); });
+    GL::keystrokes.emplace('7', [this]() { manager.stats(airlines[7]); });
 }
 
 void TowerSimulation::display_help() const

@@ -15,4 +15,5 @@ public:
     void add(std::unique_ptr<Aircraft> aircraft);
 
     bool update() override;
+    void stats(const std::string& flight_number);
 };
