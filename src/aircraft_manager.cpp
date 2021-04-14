@@ -24,6 +24,6 @@ void AircraftManager::stats(const std::string& flight_number)
 
     auto nb_flight = std::count_if(aircrafts.begin(), aircrafts.end(),
                                    [flight_number](const auto& aircraft)
-                                   { return aircraft->get_flight_num() == flight_number; });
+                                   { return aircraft->get_flight_num().substr(0, 2) == flight_number; });
     std::cout << "Number of flights of " << flight_number << ": " << nb_flight << std::endl;
 }
