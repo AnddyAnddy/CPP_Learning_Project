@@ -15,6 +15,7 @@ class Aircraft : public GL::Displayable, public GL::DynamicObject
 private:
     const AircraftType& type;
     const std::string flight_number;
+    unsigned int fuel = rand() % (MAX_FUEL - MIN_FUEL + 1) + MIN_FUEL;
     Point3D pos, speed; // note: the speed should always be normalized to length 'speed'
     WaypointQueue waypoints = {};
     Tower& control;
