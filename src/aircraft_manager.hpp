@@ -11,6 +11,7 @@ class AircraftManager : public GL::DynamicObject
 private:
     std::vector<std::unique_ptr<Aircraft>> aircrafts;
     static constexpr unsigned int FULL_KEROSENE = 3000;
+    friend std::ostream& operator<<(std::ostream& stream, AircraftManager& manager);
     void reorder()
     {
         std::sort(aircrafts.begin(), aircrafts.end(),
@@ -26,6 +27,5 @@ public:
 
     bool update() override;
     void stats(const std::string& flight_number);
-    void display_aircrafts();
     unsigned int get_required_fuel() const;
 };

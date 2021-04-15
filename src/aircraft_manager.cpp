@@ -44,14 +44,15 @@ unsigned int AircraftManager::get_required_fuel() const
                            });
 }
 
-void AircraftManager::display_aircrafts()
+std::ostream& operator<<(std::ostream& stream, AircraftManager& manager)
 {
     auto has_terminal = [](const std::unique_ptr<Aircraft>& a)
     { return a->has_terminal() ? "Reserved" : "NotReserved"; };
-    std::for_each(aircrafts.begin(), aircrafts.end(),
+    std::for_each(manager.aircrafts.begin(), manager.aircrafts.end(),
                   [has_terminal](const auto& a)
                   {
                       std::cout << a->get_flight_num() << " - " << has_terminal(a)
                                 << " / Fuel: " << a->get_fuel() << std::endl;
                   });
+    return stream;
 }
