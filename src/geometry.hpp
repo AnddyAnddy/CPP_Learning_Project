@@ -162,17 +162,33 @@ template <typename T, int Dimension> struct Point
 {
     std::array<T, Dimension> values;
     Point() {}
-    Point(T x, T y, T z) : values { x, y, z } {}
-    Point(T x, T y) : values { x, y } {}
+    Point(T x, T y, T z) : values { x, y, z } { static_assert(Dimension == 3); }
+    Point(T x, T y) : values { x, y } { static_assert(Dimension == 2); }
 
     T& x() { return values[0]; }
     T x() const { return values[0]; }
 
-    T& y() { return values[1]; }
-    T y() const { return values[1]; }
+    T& y()
+    {
+        static_assert(Dimension >= 2);
+        return values[1];
+    }
+    T y() const
+    {
+        static_assert(Dimension >= 2);
+        return values[1];
+    }
 
-    T& z() { return values[2]; }
-    T z() const { return values[2]; }
+    T& z()
+    {
+        static_assert(Dimension >= 3);
+        return values[2];
+    }
+    T z() const
+    {
+        static_assert(Dimension >= 3);
+        return values[2];
+    }
 
     Point& operator+=(const Point& other)
     {
