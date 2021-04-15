@@ -25,6 +25,8 @@ private:
     std::vector<Terminal> terminals;
     Tower tower;
     const AircraftManager& manager;
+    static constexpr unsigned int DELIVERED_FUEL = 5000;
+    static constexpr unsigned int REFILL_TIME    = 100;
 
     // reserve a terminal
     // if a terminal is free, return
@@ -69,12 +71,33 @@ public:
 
     Tower& get_tower() { return tower; }
 
+    unsigned int get_fuel_stock() const { return fuel_stock; }
+
     void display() const override { texture.draw(project_2D(pos), { 2.0f, 2.0f }); }
 
     bool update() override
     {
         for (auto& t : terminals)
         {
+            if (next_refill_time == 0)
+            {
+                fuel_stock += ordered_fuel;
+                ordered_fuel     = std::min(manager.get_required_fuel(), DELIVERED_FUEL);
+                next_refill_time = REFILL_TIME;
+                // * La quantité d'essence reçue, la quantité d'essence en stock et la nouvelle quantité
+                // d'essence commandée sont affichées dans la console.
+                // TODO: pas trop compris quoi afficher
+                if (ordered_fuel != 0)
+                {
+                    std::cout << "In stock: " << fuel_stock << " fuel" << std::endl;
+                    std::cout << "Ordered " << ordered_fuel << " fuel" << std::endl;
+                }
+            }
+            else
+            {
+                next_refill_time--;
+            }
+            t.refill_aircraft_if_needed(fuel_stock);
             t.update();
         }
 
