@@ -15,7 +15,7 @@ class Aircraft : public GL::Displayable, public GL::DynamicObject
 private:
     const AircraftType& type;
     const std::string flight_number;
-    unsigned int fuel                         = rand() % (MAX_FUEL - MIN_FUEL + 1) + MIN_FUEL;
+    mutable unsigned int fuel                 = rand() % (MAX_FUEL - MIN_FUEL + 1) + MIN_FUEL;
     static constexpr unsigned int LOW_ON_FUEL = 200;
     static constexpr unsigned int MAX_FUEL    = 3000;
     static constexpr unsigned int MIN_FUEL    = 150;
@@ -79,5 +79,5 @@ public:
     bool has_terminal() const;
     bool is_circling() const;
     bool is_low_on_fuel() const;
-    void refill(unsigned int& fuel_stock);
+    void refill(unsigned int& fuel_stock) const;
 };

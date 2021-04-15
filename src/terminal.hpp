@@ -48,4 +48,12 @@ public:
 
         return true;
     }
+
+    void refill_aircraft_if_needed(unsigned int& fuel_stock)
+    {
+        if (current_aircraft != nullptr && current_aircraft->is_low_on_fuel())
+        {
+            current_aircraft->refill(fuel_stock);
+        }
+    }
 };

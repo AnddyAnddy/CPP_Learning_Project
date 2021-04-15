@@ -175,7 +175,7 @@ bool Aircraft::is_low_on_fuel() const
     return fuel < LOW_ON_FUEL;
 }
 
-void Aircraft::refill(unsigned int& fuel_stock)
+void Aircraft::refill(unsigned int& fuel_stock) const
 {
     auto before_add     = fuel;
     unsigned int to_add = MAX_FUEL - fuel;
