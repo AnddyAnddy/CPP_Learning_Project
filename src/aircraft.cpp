@@ -141,7 +141,8 @@ bool Aircraft::update()
         }
         else
         {
-            fuel--;
+            auto fuel_usage = type.fuel_usage >= fuel ? fuel : type.fuel_usage;
+            fuel -= fuel_usage;
             if (fuel == 0)
             {
                 using namespace std::string_literals;

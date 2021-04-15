@@ -11,13 +11,16 @@ struct AircraftType
     const float max_ground_speed;
     const float max_air_speed;
     const float max_accel;
+    const unsigned int fuel_usage;
     const GL::Texture2D texture;
 
     AircraftType(const float max_ground_speed_, const float max_air_speed_, const float max_accel_,
-                 const MediaPath& sprite, const size_t num_tiles = NUM_AIRCRAFT_TILES) :
+                 const unsigned int fuel_usage_, const MediaPath& sprite,
+                 const size_t num_tiles = NUM_AIRCRAFT_TILES) :
         max_ground_speed { max_ground_speed_ },
         max_air_speed { max_air_speed_ },
         max_accel { max_accel_ },
+        fuel_usage { fuel_usage_ },
         texture { new img::Image { sprite.get_full_path() }, num_tiles }
     {}
 };
@@ -30,7 +33,7 @@ inline AircraftType* aircraft_types[NUM_AIRCRAFT_TYPES] {};
 inline void init_aircraft_types()
 {
     // TASK_0: C-1.
-    aircraft_types[0] = new AircraftType { .02f, .05f, .02f, MediaPath { "l1011_48px.png" } };
-    aircraft_types[1] = new AircraftType { .02f, .05f, .02f, MediaPath { "b707_jat.png" } };
-    aircraft_types[2] = new AircraftType { .02f, .08f, .03f, MediaPath { "concorde_af.png" } };
+    aircraft_types[0] = new AircraftType { .02f, .05f, .02f, 1, MediaPath { "l1011_48px.png" } };
+    aircraft_types[1] = new AircraftType { .02f, .05f, .02f, 2, MediaPath { "b707_jat.png" } };
+    aircraft_types[2] = new AircraftType { .02f, .08f, .03f, 3, MediaPath { "concorde_af.png" } };
 }
