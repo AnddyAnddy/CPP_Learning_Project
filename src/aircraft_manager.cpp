@@ -14,7 +14,17 @@ bool AircraftManager::update()
     // On doit déréférencer 2x pour obtenir une référence sur l'Aircraft : une fois pour déréférencer
     // l'itérateur, et une deuxième fois pour déréférencer le unique_ptr.
     aircrafts.erase(std::remove_if(aircrafts.begin(), aircrafts.end(),
-                                   [](auto& aircraft) { return !aircraft->update(); }),
+                                   [](auto& aircraft)
+                                   {
+                                       try
+                                       {
+                                           return !aircraft->update();
+                                       } catch (AircraftCrash& e)
+                                       {
+                                           std::cerr << e.what() << std::endl;
+                                           return true;
+                                       }
+                                   }),
                     aircrafts.end());
 
     // On peut potentiellement supprimer des aircraft juste avant, autant ne pas les prendre en compte dans le
