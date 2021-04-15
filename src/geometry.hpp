@@ -161,10 +161,11 @@
 template <typename T, int Dimension> struct Point
 {
     std::array<T, Dimension> values;
-    Point() {}
-    Point(T x, T y, T z) : values { x, y, z } { static_assert(Dimension == 3); }
-    Point(T x, T y) : values { x, y } { static_assert(Dimension == 2); }
-
+    template <typename... Qs>
+    Point(const T& first, Qs... others) : values { first, static_cast<T>(others)... }
+    {
+        static_assert(sizeof...(Qs) == Dimension - 1);
+    };
     T& x() { return values[0]; }
     T x() const { return values[0]; }
 
