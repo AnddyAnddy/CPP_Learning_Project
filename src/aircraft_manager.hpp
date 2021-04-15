@@ -12,6 +12,7 @@ private:
     std::vector<std::unique_ptr<Aircraft>> aircrafts;
     static constexpr unsigned int FULL_KEROSENE = 3000;
     friend std::ostream& operator<<(std::ostream& stream, AircraftManager& manager);
+    mutable unsigned int nb_crash_aircrafts = 0;
     void reorder()
     {
         std::sort(aircrafts.begin(), aircrafts.end(),
@@ -23,6 +24,7 @@ private:
     }
 
 public:
+    unsigned int get_nb_crash() const { return nb_crash_aircrafts; }
     void add(std::unique_ptr<Aircraft> aircraft);
 
     bool update() override;

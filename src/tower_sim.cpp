@@ -93,6 +93,10 @@ void TowerSimulation::create_keystrokes()
     // TASK-2 Obj-1 C: Affichage du stock de fuel
     GL::keystrokes.emplace('s', [this]()
                            { std::cout << "Fuel stock: " << airport->get_fuel_stock() << std::endl; });
+    // TASK-3 Obj-1 2: Affichage du nombre de crash des aircrafts
+    GL::keystrokes.emplace(
+        'm',
+        [this]() { std::cout << "Number of dead aircraft (rip): " << manager.get_nb_crash() << std::endl; });
 }
 
 void TowerSimulation::display_help() const
