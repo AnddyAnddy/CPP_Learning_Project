@@ -141,7 +141,11 @@ bool Aircraft::update()
         }
         else
         {
-            auto fuel_usage = type.fuel_usage >= fuel ? fuel : type.fuel_usage;
+            auto fuel_usage = ((unsigned int)(speed.length() / type.max_air_speed) * type.fuel_usage);
+            if (fuel_usage >= fuel)
+            {
+                fuel_usage = fuel;
+            }
             fuel -= fuel_usage;
             if (fuel == 0)
             {
