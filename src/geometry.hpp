@@ -162,6 +162,49 @@ template <typename T, int Dimension> struct Point
 {
     std::array<T, Dimension> values;
     Point() {}
+
+    Point<T, Dimension>& operator+=(const Point<T, Dimension>& other)
+    {
+        int i = 0;
+        std::transform(values.begin(), values.end(), values.begin(),
+                       [&other, &i](auto v) { return v + other.values[i++]; });
+        return *this;
+    }
+
+    Point<T, Dimension>& operator-=(const Point<T, Dimension>& other)
+    {
+        int i = 0;
+        std::transform(values.begin(), values.end(), values.begin(),
+                       [&other, &i](auto v) { return v - other.values[i++]; });
+        return *this;
+    }
+
+    Point<T, Dimension>& operator*=(const float scalar)
+    {
+        std::transform(values.begin(), values.end(), values.begin(), [scalar](auto v) { return v * scalar; });
+        return *this;
+    }
+
+    Point<T, Dimension> operator+(const Point<T, Dimension>& other) const
+    {
+        Point<T, Dimension> result = *this;
+        result += other;
+        return result;
+    }
+
+    Point<T, Dimension> operator-(const Point<T, Dimension>& other) const
+    {
+        Point<T, Dimension> result = *this;
+        result -= other;
+        return result;
+    }
+
+    Point<T, Dimension> operator*(const float scalar) const
+    {
+        Point<T, Dimension> result = *this;
+        result *= scalar;
+        return result;
+    }
 };
 // our 3D-coordinate system will be tied to the airport: the runway is parallel to the x-axis, the z-axis
 // points towards the sky, and y is perpendicular to both thus,
