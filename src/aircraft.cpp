@@ -141,9 +141,8 @@ bool Aircraft::update()
             fuel--;
             if (fuel == 0)
             {
-                std::cout << "Aircraft " << flight_number << " crashed snif, fuel = 0" << std::endl;
-                is_service_done = true;
-                return false;
+                using namespace std::string_literals;
+                throw AircraftCrash { flight_number + " crashed snif, fuel = 0"s };
             }
             // if we are in the air, but too slow, then we will sink!
             const float speed_len = speed.length();
