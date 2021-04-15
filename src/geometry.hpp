@@ -162,17 +162,17 @@ template <typename T, int Dimension> struct Point
 {
     std::array<T, Dimension> values;
     Point() {}
-    Point(float x, float y, float z) : values { x, y, z } {}
-    Point(float x, float y) : values { x, y } {}
+    Point(T x, T y, T z) : values { x, y, z } {}
+    Point(T x, T y) : values { x, y } {}
 
-    float& x() { return values[0]; }
-    float x() const { return values[0]; }
+    T& x() { return values[0]; }
+    T x() const { return values[0]; }
 
-    float& y() { return values[1]; }
-    float y() const { return values[1]; }
+    T& y() { return values[1]; }
+    T y() const { return values[1]; }
 
-    float& z() { return values[2]; }
-    float z() const { return values[2]; }
+    T& z() { return values[2]; }
+    T z() const { return values[2]; }
 
     Point& operator+=(const Point& other)
     {
@@ -190,7 +190,7 @@ template <typename T, int Dimension> struct Point
         return *this;
     }
 
-    Point& operator*=(const float scalar)
+    Point& operator*=(const T scalar)
     {
         std::transform(values.begin(), values.end(), values.begin(), [scalar](auto v) { return v * scalar; });
         return *this;
@@ -217,7 +217,7 @@ template <typename T, int Dimension> struct Point
         return result;
     }
 
-    Point operator*(const float scalar) const
+    Point operator*(const T scalar) const
     {
         Point result = *this;
         result *= scalar;
@@ -231,7 +231,7 @@ template <typename T, int Dimension> struct Point
         return result;
     }
 
-    float length() const
+    T length() const
     {
         return std::sqrt(std::accumulate(values.begin(), values.end(), 0.f,
                                          [](const auto v1, const auto v2) { return v1 + v2 * v2; }));
@@ -244,7 +244,7 @@ template <typename T, int Dimension> struct Point
         return *this;
     }
 
-    float distance_to(const Point& other) const { return (*this - other).length(); }
+    T distance_to(const Point& other) const { return (*this - other).length(); }
 
     Point& normalize(const float target_len = 1.0f)
     {
@@ -262,7 +262,7 @@ template <typename T, int Dimension> struct Point
     {
         assert(max_len > 0);
 
-        const float current_len = length();
+        const T current_len = length();
         if (current_len > max_len)
         {
             *this *= (max_len / current_len);
