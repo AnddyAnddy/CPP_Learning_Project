@@ -15,9 +15,10 @@ class Aircraft : public GL::Displayable, public GL::DynamicObject
 private:
     const AircraftType& type;
     const std::string flight_number;
-    mutable unsigned int fuel                 = rand() % (MAX_FUEL - MIN_FUEL + 1) + MIN_FUEL;
-    static constexpr unsigned int LOW_ON_FUEL = 200;
-    static constexpr unsigned int MAX_FUEL    = 3000;
+    mutable unsigned int fuel = rand() % (MAX_FUEL - MIN_FUEL + 1) + MIN_FUEL;
+    //    static constexpr unsigned int LOW_ON_FUEL = 200;
+    const unsigned int low_on_fuel;
+    static constexpr unsigned int MAX_FUEL = 3000;
     static constexpr unsigned int MIN_FUEL    = 150;
     Point3D pos, speed; // note: the speed should always be normalized to length 'speed'
     WaypointQueue waypoints = {};
@@ -52,6 +53,11 @@ private:
     bool is_on_ground() const { return pos.z() < DISTANCE_THRESHOLD; }
     float max_speed() const { return is_on_ground() ? type.max_ground_speed : type.max_air_speed; }
 
+    unsigned int consumption_per_tick() const
+    {
+        return ((unsigned int)(speed.length() / max_speed()) * type.fuel_usage);
+    }
+
     Aircraft(const Aircraft&) = delete;
     Aircraft& operator=(const Aircraft&) = delete;
 
@@ -61,11 +67,13 @@ public:
         GL::Displayable { pos_.x() + pos_.y() },
         type { type_ },
         flight_number { flight_number_ },
+        low_on_fuel { type_.fuel_usage * (10 * DEFAULT_TICKS_PER_SEC) },
         pos { pos_ },
         speed { speed_ },
         control { control_ }
     {
         speed.cap_length(max_speed());
+        ;
     }
 
     const std::string& get_flight_num() const { return flight_number; }

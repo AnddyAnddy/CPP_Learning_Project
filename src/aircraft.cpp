@@ -141,7 +141,7 @@ bool Aircraft::update()
         }
         else
         {
-            auto fuel_usage = ((unsigned int)(speed.length() / type.max_air_speed) * type.fuel_usage);
+            auto fuel_usage = consumption_per_tick();
             if (fuel_usage >= fuel)
             {
                 fuel_usage = fuel;
@@ -179,7 +179,7 @@ bool Aircraft::is_circling() const
 
 bool Aircraft::is_low_on_fuel() const
 {
-    return fuel < LOW_ON_FUEL;
+    return fuel < low_on_fuel;
 }
 
 void Aircraft::refill(unsigned int& fuel_stock) const
