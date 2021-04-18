@@ -19,7 +19,7 @@ private:
     //    static constexpr unsigned int LOW_ON_FUEL = 200;
     const unsigned int low_on_fuel;
     static constexpr unsigned int MAX_FUEL = 3000;
-    static constexpr unsigned int MIN_FUEL    = 150;
+    static constexpr unsigned int MIN_FUEL = 150;
     Point3D pos, speed; // note: the speed should always be normalized to length 'speed'
     WaypointQueue waypoints = {};
     Tower& control;
@@ -84,6 +84,7 @@ public:
     bool update() override;
 
     friend class Tower;
+    friend class AircraftManager;
     bool has_terminal() const;
     bool is_circling() const;
     bool is_low_on_fuel() const;

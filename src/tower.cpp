@@ -79,3 +79,15 @@ WaypointQueue Tower::reserve_terminal(Aircraft& aircraft)
     }
     return {};
 }
+void Tower::remove_aircraft_from_terminals(Aircraft* aircraft)
+{
+    for (auto& terminal : airport.terminals)
+    {
+        terminal.free_craft(aircraft);
+    }
+    auto it = reserved_terminals.find(aircraft);
+    if (it != reserved_terminals.end())
+    {
+        reserved_terminals.erase(it);
+    }
+}
