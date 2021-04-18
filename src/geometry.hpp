@@ -289,7 +289,21 @@ template <typename T, int Dimension> struct Point
 
         return *this;
     }
+
+    template <typename U, int D>
+    friend std::ostream& operator<<(std::ostream& stream, const Point<U, D>& point);
 };
+
+template <typename T, int Dimension>
+std::ostream& operator<<(std::ostream& stream, const Point<T, Dimension>& point)
+{
+    return stream << "("
+                  << std::accumulate(point.values.begin() + 1, point.values.end(),
+                                     std::to_string(point.values[0]),
+                                     [&stream](std::string v1, float v2)
+                                     { return std::move(v1) + ", " + std::to_string(v2); })
+                  << ")" << std::endl;
+}
 
 using Point2D = Point<float, 2>;
 using Point3D = Point<float, 3>;

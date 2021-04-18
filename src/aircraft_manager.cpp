@@ -1,5 +1,7 @@
 #include "aircraft_manager.hpp"
 
+#include "aircraft_crash.hpp"
+
 #include <algorithm>
 #include <utility>
 
@@ -19,7 +21,7 @@ bool AircraftManager::update()
                                        try
                                        {
                                            return !aircraft->update();
-                                       } catch (AircraftCrash& e)
+                                       } catch (const AircraftCrash& e)
                                        {
                                            nb_crash_aircrafts++;
                                            std::cerr << e.what() << std::endl;

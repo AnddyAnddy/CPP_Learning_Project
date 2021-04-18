@@ -1,6 +1,7 @@
 #include "aircraft.hpp"
 
 #include "GL/opengl_interface.hpp"
+#include "aircraft_crash.hpp"
 
 #include <cmath>
 
@@ -136,7 +137,7 @@ bool Aircraft::update()
             if (!landing_gear_deployed)
             {
                 using namespace std::string_literals;
-                throw AircraftCrash { flight_number + " crashed into the ground"s };
+                throw AircraftCrash { flight_number, pos, speed, "Blind pilot, bad landing"s };
             }
         }
         else
@@ -150,7 +151,7 @@ bool Aircraft::update()
             if (fuel == 0)
             {
                 using namespace std::string_literals;
-                throw AircraftCrash { flight_number + " crashed snif, fuel = 0"s };
+                throw AircraftCrash { flight_number, pos, speed, "No fuel left snif"s };
             }
             // if we are in the air, but too slow, then we will sink!
             const float speed_len = speed.length();

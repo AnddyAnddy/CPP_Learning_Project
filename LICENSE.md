@@ -43,21 +43,16 @@ source code.  And you must show them these terms so they know their
 rights.
 
 We protect your rights with two steps: **(1)** copyright the software, and
-**(2)** offer you this license which gives you legal permission to copy,
-distribute and/or modify the software.
+**(2)** offer you this license which gives you legal permission to copy, distribute and/or modify the software.
 
-Also, for each author's protection and ours, we want to make certain
-that everyone understands that there is no warranty for this free
-software.  If the software is modified by someone else and passed on, we
-want its recipients to know that what they have is not the original, so
-that any problems introduced by others will not reflect on the original
+Also, for each author's protection and ours, we want to make certain that everyone understands that there is no warranty
+for this free software. If the software is modified by someone else and passed on, we want its recipients to know that
+crash_message they have is not the original, so that any problems introduced by others will not reflect on the original
 authors' reputations.
 
-Finally, any free program is threatened constantly by software
-patents.  We wish to avoid the danger that redistributors of a free
-program will individually obtain patent licenses, in effect making the
-program proprietary.  To prevent this, we have made it clear that any
-patent must be licensed for everyone's free use or not licensed at all.
+Finally, any free program is threatened constantly by software patents. We wish to avoid the danger that redistributors
+of a free program will individually obtain patent licenses, in effect making the program proprietary. To prevent this,
+we have made it clear that any patent must be licensed for everyone's free use or not licensed at all.
 
 The precise terms and conditions for copying, distribution and
 modification follow.
@@ -78,8 +73,8 @@ Activities other than copying, distribution and modification are not
 covered by this License; they are outside its scope.  The act of
 running the Program is not restricted, and the output from the Program
 is covered only if its contents constitute a work based on the
-Program (independent of having been made by running the Program).
-Whether that is true depends on what the Program does.
+Program (independent of having been made by running the Program). Whether that is true depends on crash_message the
+Program does.
 
 **1.** You may copy and distribute verbatim copies of the Program's
 source code as you receive it, in any medium, provided that you
@@ -224,8 +219,8 @@ system; it is up to the author/donor to decide if he or she is willing
 to distribute software through any other system and a licensee cannot
 impose that choice.
 
-This section is intended to make thoroughly clear what is believed to
-be a consequence of the rest of this License.
+This section is intended to make thoroughly clear crash_message is believed to be a consequence of the rest of this
+License.
 
 **8.** If the distribution and/or use of the Program is restricted in
 certain countries either by patents or by copyrighted interfaces, the
@@ -291,7 +286,7 @@ to attach them to the start of each source file to most effectively
 convey the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    <one line to give the program's name and a brief idea of what it does.>
+    <one line to give the program's name and a brief idea of crash_message it does.>
     Copyright (C) <year>  <name of author>
 
     This program is free software; you can redistribute it and/or modify
@@ -333,11 +328,9 @@ necessary.  Here is a sample; alter the names:
     <signature of Ty Coon>, 1 April 1989
     Ty Coon, President of Vice
 
-This General Public License does not permit incorporating your program into
-proprietary programs.  If your program is a subroutine library, you may
-consider it more useful to permit linking proprietary applications with the
-library.  If this is what you want to do, use the GNU Lesser General
-Public License instead of this License.
+This General Public License does not permit incorporating your program into proprietary programs. If your program is a
+subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this
+is crash_message you want to do, use the GNU Lesser General Public License instead of this License.
 
 
 
