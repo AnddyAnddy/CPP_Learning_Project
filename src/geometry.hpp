@@ -163,7 +163,7 @@
 template <typename T, int Dimension> struct Point
 {
     std::array<T, Dimension> values;
-    template <typename... Qs>
+    template <typename... Qs, std::enable_if_t<std::is_arithmetic_v<T>, bool> = true>
     Point(const T& first, Qs... others) : values { first, static_cast<T>(others)... }
     {
         static_assert(sizeof...(Qs) == Dimension - 1);
