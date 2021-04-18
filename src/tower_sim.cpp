@@ -7,15 +7,12 @@
 #include "img/image.hpp"
 #include "img/media_path.hpp"
 
-#include <algorithm>
-#include <cassert>
 #include <cstdlib>
 #include <ctime>
 #include <tuple>
 
 using namespace std::string_literals;
 
-const std::string airlines[8] = { "AF", "LH", "EY", "DL", "KL", "BA", "AY", "EY" };
 
 TowerSimulation::TowerSimulation(int argc, char** argv) :
     help { (argc > 1) && (std::string { argv[1] } == "--help"s || std::string { argv[1] } == "-h"s) }
@@ -31,10 +28,6 @@ TowerSimulation::TowerSimulation(int argc, char** argv) :
     GL::move_queue.emplace(&manager);
 }
 
-TowerSimulation::~TowerSimulation()
-{
-    delete airport;
-}
 
 std::unique_ptr<Aircraft> TowerSimulation::create_aircraft(const AircraftType& type)
 {
@@ -73,7 +66,8 @@ void TowerSimulation::create_keystrokes()
     for (auto [key, airline_id] = std::tuple { '0', 0u };
          airline_id < aircraft_factory.get_nb_possible_aircraft_prefix(); airline_id++, key++)
     {
-        GL::keystrokes.emplace(key, [this, id = airline_id]() { manager.stats(airlines[id]); });
+        GL::keystrokes.emplace(key,
+                               [this, id = airline_id]() { manager.stats(aircraft_factory.prefixes[id]); });
     }
 
     // TASK-2 Obj-1 C: Affichage des aircrafts
@@ -103,10 +97,13 @@ void TowerSimulation::display_help() const
 
 void TowerSimulation::init_airport()
 {
-    airport = new Airport { one_lane_airport, Point3D { 0, 0, 0 },
-                            new img::Image { one_lane_airport_sprite_path.get_full_path() }, manager };
+    //    airport = new Airport { one_lane_airport, Point3D { 0, 0, 0 }, new img::Image {
+    //    one_lane_airport_sprite_path.get_full_path() }, manager };
+    airport =
+        std::make_shared<Airport>(one_lane_airport, Point3D { 0, 0, 0 },
+                                  new img::Image { one_lane_airport_sprite_path.get_full_path() }, manager);
 
-    GL::move_queue.emplace(airport);
+    GL::move_queue.emplace(airport.get());
 }
 
 void TowerSimulation::launch()

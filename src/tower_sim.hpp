@@ -11,8 +11,8 @@ class Airport;
 class TowerSimulation
 {
 private:
-    bool help        = false;
-    Airport* airport = nullptr;
+    bool help                        = false;
+    std::shared_ptr<Airport> airport = nullptr;
     AircraftManager manager;
     AircraftFactory aircraft_factory;
 
@@ -29,7 +29,7 @@ private:
 
 public:
     TowerSimulation(int argc, char** argv);
-    ~TowerSimulation();
+    ~TowerSimulation() = default;
 
     void launch();
 };

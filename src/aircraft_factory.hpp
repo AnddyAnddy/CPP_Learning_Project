@@ -16,8 +16,6 @@ private:
     std::unordered_set<std::string> registered_aircraft_names;
     const AircraftType* aircraft_types[NB_TYPES_AIRCRAFT] {};
 
-    const std::vector<std::string> prefixes = { "AF", "LH", "EY", "DL", "KL", "BA", "AY", "EY" };
-
     bool is_aircraft_registered(const std::string& aircraft_name) const
     {
         return registered_aircraft_names.find(aircraft_name) != registered_aircraft_names.end();
@@ -39,8 +37,10 @@ private:
 
 public:
     static constexpr unsigned int NB_POSSIBLE_AIRCRAFT_PREFIX = 8;
+    const std::vector<std::string> prefixes = { "AF", "LH", "EY", "DL", "KL", "BA", "AY", "EY" };
 
-    [[nodiscard]] std::unique_ptr<Aircraft> create_aircraft(const AircraftType& type, Airport* airport)
+    [[nodiscard]] std::unique_ptr<Aircraft> create_aircraft(const AircraftType& type,
+                                                            std::shared_ptr<Airport> airport)
     {
         assert(airport);
         const auto flight_name = new_unique_random_aircraft_name();
@@ -51,7 +51,7 @@ public:
         return std::make_unique<Aircraft>(type, flight_name, start, direction, airport->get_tower());
     }
 
-    std::unique_ptr<Aircraft> create_random_aircraft(Airport* airport)
+    std::unique_ptr<Aircraft> create_random_aircraft(std::shared_ptr<Airport> airport)
     {
         return create_aircraft(*(aircraft_types[rand() % NB_TYPES_AIRCRAFT]), airport);
     }
