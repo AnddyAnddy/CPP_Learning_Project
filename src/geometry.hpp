@@ -6,6 +6,8 @@
 #include <cmath>
 #include <iostream>
 #include <numeric>
+// Point2D et Point3D entièrement commenté au cas où vous regardez quelques trucs de la task 2 obj 1 C
+// La struct Point commence ligne 164
 
 // struct Point2D
 //{

@@ -20,17 +20,17 @@ add_executable(tower
     src/aircraft.hpp
     src/airport_type.hpp
 	src/airport.hpp
-	src/config.hpp
-	src/geometry.hpp
-	src/runway.hpp
-	src/terminal.hpp
-	src/tower_sim.cpp
-	src/tower_sim.hpp
-	src/tower.cpp
-	src/tower.hpp
-	src/waypoint.hpp
-	src/main.cpp
-)
+		src/config.hpp
+		src/geometry.hpp
+		src/runway.hpp
+		src/terminal.hpp
+		src/tower_sim.cpp
+		src/tower_sim.hpp
+		src/tower.cpp
+		src/tower.hpp
+		src/waypoint.hpp
+		src/main.cpp
+		src/aircraft_factory.hpp)
 
 ###################
 # Compile options #
