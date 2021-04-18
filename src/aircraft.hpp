@@ -73,7 +73,6 @@ public:
         control { control_ }
     {
         speed.cap_length(max_speed());
-        ;
     }
 
     const std::string& get_flight_num() const { return flight_number; }
